@@ -36,15 +36,17 @@ function addStudent() {
     turnOn("teacherStudentAdded");
 }
 
-function addTeacher(){
+function addTeacher(newTeacher){
     hideAll();
     var firstName = document.getElementById("firstName").value;
     var lastName = document.getElementById("lastName").value;
     var subject = document.getElementById("subject").value;
     document.getElementById("teacherStudentAdded").innerHTML = "Teacher " + firstName + " " + lastName + " Successfully Added";
     turnOn("teacherStudentAdded");
-    new Teacher(firstName, lastName, subject);
-
+    newTeacher = new Teacher(firstName, lastName, subject);
+    console.log(newTeacher);
+    teachers.push(newTeacher);
+    console.log(teachers);
 }
 
 function addSection(){
