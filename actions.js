@@ -28,11 +28,28 @@ function addPersonContinue(){
     }
 }
 
-function addStudent() {
+function addStudent(newStudent) {
     hideAll();
+
     var firstName = document.getElementById("firstName").value;
     var lastName = document.getElementById("lastName").value;
-    document.getElementById("teacherStudentAdded").innerHTML = "Student " + firstName + " " + lastName + " Successfully Added";
+    var id = document.getElementById("IdNumber").value;
+    var grade = document.getElementById("gradeLevel").value;
+    newStudent = new Student(firstName, lastName, id, grade);
+
+    var repeat = false;
+    for (var i = 0; i < teachers.length; i++) {
+        if (students[i].lastName == newStudent.lastName) {
+            repeat = true;
+            break;
+        }
+    }
+    if (repeat) {
+        document.getElementById("teacherStudentAdded").innerHTML = "Student " + newStudent.lastName + " is already in the system."
+    }else{
+        document.getElementById("teacherStudentAdded").innerHTML = "Student " + firstName + " " + lastName + " Successfully Added";
+        students.push(newStudent);
+    }
     turnOn("teacherStudentAdded");
 }
 
@@ -41,12 +58,23 @@ function addTeacher(newTeacher){
     var firstName = document.getElementById("firstName").value;
     var lastName = document.getElementById("lastName").value;
     var subject = document.getElementById("subject").value;
-    document.getElementById("teacherStudentAdded").innerHTML = "Teacher " + firstName + " " + lastName + " Successfully Added";
-    turnOn("teacherStudentAdded");
     newTeacher = new Teacher(firstName, lastName, subject);
-    console.log(newTeacher);
-    teachers.push(newTeacher);
-    console.log(teachers);
+
+    var repeat = false;
+    for(var i = 0; i < teachers.length; i++){
+        if(teachers[i].lastName == newTeacher.lastName) {
+            repeat = true;
+            break;
+        }
+    }
+
+    if(repeat){
+        document.getElementById("teacherStudentAdded").innerHTML = "Teacher " + newTeacher.lastName + " is already in the system."
+    }else{
+        document.getElementById("teacherStudentAdded").innerHTML = "Teacher " + firstName + " " + lastName + " Successfully Added";
+        teachers.push(newTeacher);
+    }
+    turnOn("teacherStudentAdded");
 }
 
 function addSection(){

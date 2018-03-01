@@ -31,6 +31,6 @@ advMath3 = new Section("Advanced Math 3", 30, "Weitz");
 advMath2 = new Section("Advanced Math 2", 25, "Henri");
 IBEnglish = new Section("IB English", 30, "Moreno");
 
-var teachers = [weitz, henri, moreno, miller, parker, vegt];
+var teachers = [weitz, henri, moreno, miller, parker, vegt, "abc"];
 var students = [smith, baggins, pickle];
 var sections = [advMath2, advMath3, IBEnglish];
