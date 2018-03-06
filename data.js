@@ -26,11 +26,11 @@ vegt = new Teacher("Robin", "Vegt", "History");
 
 smith = new Student("John", "Smith", 000001, 11);
 baggins = new Student("Frodo", "Baggins",  000002, 9);
-pickle = new Student("dyl", "pickle", 000003, 10);
+pickle = new Student("dyl", "Pickle", 000003, 10);
 advMath3 = new Section("Advanced Math 3", 30, "Weitz");
 advMath2 = new Section("Advanced Math 2", 25, "Henri");
 IBEnglish = new Section("IB English", 30, "Moreno");
 
-var teachers = [weitz, henri, moreno, miller, parker, vegt, "abc"];
+var teachers = [weitz, henri, moreno, miller, parker, vegt];
 var students = [smith, baggins, pickle];
 var sections = [advMath2, advMath3, IBEnglish];

@@ -13,14 +13,13 @@
 <body>
 
     <h1 class="center"><u><strong>School System</strong></u></h1>
-
     <div id="buttons" class="center">
         <button class="btn btn-default" onclick="addPerson()">Add a New Person</button>
         <button class="btn btn-default" onclick="addSection()">Add Section</button>
         <button class="btn btn-default" onclick="addStudentToSection()">Add a Student to a Section</button>
         <button class="btn btn-default" onclick="assignStudentGrade()">Assign a Student a Grade</button>
         <button class="btn btn-default" onclick="removeStudentFromSection()">Remove a Student from a Section</button>
-        <button class="btn btn-default" onclick="schoolData()">School Data</button>
+        <button class="btn btn-default" onclick="showData()">Show Data</button>
         <button class="btn btn-default" onclick="searchSchool()">Search</button>
     </div>
 
@@ -63,6 +62,15 @@
     </fieldset>
     <div id="sectionEntered" class="onOff"></div>
 
+    <fieldset id="showData" class="onOff">
+        <legend>School Data: </legend>
+        Select: <select id="selectDataType">
+            <option value="0">Students</option>
+            <option value="1">Teachers</option>
+            <option value="2">Sections</option>
+        </select>
+        <button class="btn btn-default" onclick="listAll()">List all</button>
+    </fieldset>
 </body>
 
 

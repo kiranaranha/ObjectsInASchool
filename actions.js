@@ -36,9 +36,9 @@ function addStudent(newStudent) {
     var id = document.getElementById("IdNumber").value;
     var grade = document.getElementById("gradeLevel").value;
     newStudent = new Student(firstName, lastName, id, grade);
-
     var repeat = false;
-    for (var i = 0; i < teachers.length; i++) {
+    for (var i = 0; i < students.length; i++) {
+        console.log(students[i].lastName);
         if (students[i].lastName == newStudent.lastName) {
             repeat = true;
             break;
@@ -108,8 +108,12 @@ function removeStudentFromSection(){
     hideAll();
 }
 
-function schoolData() {
+function showData() {
     hideAll();
+    turnOn("showData");
+}
+function listAll(){
+
 }
 
 function searchSchool() {
