@@ -45,9 +45,11 @@ function addStudent(newStudent) {
         }
     }
     if (repeat) {
-        document.getElementById("teacherStudentAdded").innerHTML = "Student " + newStudent.lastName + " is already in the system."
+        document.getElementById("teacherStudentAdded").innerHTML = "Student " + newStudent.lastName
+            + " is already in the system."
     }else{
-        document.getElementById("teacherStudentAdded").innerHTML = "Student " + firstName + " " + lastName + " Successfully Added";
+        document.getElementById("teacherStudentAdded").innerHTML = "Student " + firstName + " " + lastName
+            + " Successfully Added";
         students.push(newStudent);
     }
     turnOn("teacherStudentAdded");
@@ -69,9 +71,11 @@ function addTeacher(newTeacher){
     }
 
     if(repeat){
-        document.getElementById("teacherStudentAdded").innerHTML = "Teacher " + newTeacher.lastName + " is already in the system."
+        document.getElementById("teacherStudentAdded").innerHTML = "Teacher " + newTeacher.lastName
+            + " is already in the system."
     }else{
-        document.getElementById("teacherStudentAdded").innerHTML = "Teacher " + firstName + " " + lastName + " Successfully Added";
+        document.getElementById("teacherStudentAdded").innerHTML = "Teacher " + firstName + " " + lastName
+            + " Successfully Added";
         teachers.push(newTeacher);
     }
     turnOn("teacherStudentAdded");
@@ -92,7 +96,8 @@ function enterSection(){
     var sectionName = document.getElementById("sectionName").value;
     var teacher = document.getElementById("teacherSelectBox").value;
     hideAll();
-    document.getElementById("sectionEntered").innerHTML = "Section " + sectionName + " with Teacher " + teacher + " Successfully Added";
+    document.getElementById("sectionEntered").innerHTML = "Section " + sectionName + " with Teacher " + teacher
+        + " Successfully Added";
     turnOn("sectionEntered");
 }
 
@@ -113,8 +118,49 @@ function showData() {
     turnOn("showData");
 }
 function listAll(){
-
+    //students = 0; teachers = 1; section = 2;
+    turnOff("objectDetails");
+    var type = document.getElementById("selectDataType").value;
+    var array = [];
+    var list = '';
+    if(type == 0){
+        array = students;
+    }
+    if(type == 1){
+        array = teachers;
+    }
+    if(type == 2){
+        array = sections;
+    }
+    for(i = 0; i < array.length; i++){
+        if(type == 0) {
+            list += "<div onclick='detailStudent(" +i+ ")'>" + array[i].firstName + ' ' + array[i].lastName + "</div>";
+        }else if(type == 1){
+            list += "<div onclick='detailTeacher(" +i+ ")'>" + array[i].firstName + ' ' + array[i].lastName + "</div>";
+        }else{
+            list += "<div onclick='detailSection(" +i+ ")'>" + array[i].name + "</div>";
+        }
+    }
+    document.getElementById("listData").innerHTML = list;
+    turnOn("listData");
 }
+function detailStudent(n){
+    document.getElementById("objectDetails").innerHTML ="Student " + students[n].firstName + " " + students[n].lastName
+        + " is in " + students[n].grade + "th grade and has the ID number " + students[n].id;
+    turnOn("objectDetails");
+}
+function detailTeacher(n){
+    document.getElementById("objectDetails").innerHTML = teachers[n].firstName + " "
+        + teachers[n].lastName + " teaches " + teachers[n].subject;
+    turnOn("objectDetails");
+}
+function detailSection(n){
+    document.getElementById("objectDetails").innerHTML = sections[n].name + " is taught by " + sections[n].teacher
+        + " and has a max size of " + sections[n].maxsize;
+    turnOn("objectDetails");
+}
+
+
 
 function searchSchool() {
     hideAll();
