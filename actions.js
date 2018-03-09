@@ -141,7 +141,7 @@ function listAll(){
             list += "<div onclick='detailSection(" +i+ ")'>" + array[i].name + "</div>";
         }
     }
-    document.getElementById("listData").innerHTML = list;
+    document.getElementById("listData").innerHTML = "Select an item in the list for more information: <br><br>" + list;
     turnOn("listData");
 }
 function detailStudent(n){
