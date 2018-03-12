@@ -15,6 +15,8 @@ function Section(name, maxsize, teacher){
     this.name = name;
     this.maxsize = maxsize;
     this.teacher = teacher;
+    this.size = 0;
+    this.students = [];
 }
 
 weitz = new Teacher("Michael", "Weitz", "Math");

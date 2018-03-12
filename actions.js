@@ -89,7 +89,7 @@ function addSection(){
         TSB += "<option>" + teachers[i].lastName + "</option><br>";
     }
     TSB += "</select>";
-document.getElementById("teacherSelectDiv").innerHTML = TSB;
+document.getElementById("teacherSelectDiv").innerHTML = "Enter Section Teacher: " + TSB;
 }
 
 function enterSection(){
@@ -103,6 +103,22 @@ function enterSection(){
 
 function addStudentToSection(){
     hideAll();
+    document.getElementById("studentSectionSelectDiv");
+
+    var stuS = "<select id='studentSelect'><br>";
+    for(var i = 0; i < students.length; i++){
+        stuS += "<option>" + students[i].lastName + "</option><br>";
+    }
+    stuS += "</select>";
+
+    var secS = "<select id='sectionSelect'><br>";
+    for(var i = 0; i < students.length; i++){
+        secS += "<option>" + students[i].lastName + "</option><br>";
+    }
+    secS += "</select>";
+
+
+    turnOn("addStudentToSection");
 }
 
 function assignStudentGrade(){
