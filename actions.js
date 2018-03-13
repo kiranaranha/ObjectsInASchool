@@ -103,22 +103,30 @@ function enterSection(){
 
 function addStudentToSection(){
     hideAll();
-    document.getElementById("studentSectionSelectDiv");
-
+    turnOff("studentToSectionDisplay")
     var stuS = "<select id='studentSelect'><br>";
     for(var i = 0; i < students.length; i++){
-        stuS += "<option>" + students[i].lastName + "</option><br>";
+        stuS += "<option value='" + i + "'>" + students[i].lastName + "</option><br>";
     }
     stuS += "</select>";
-
     var secS = "<select id='sectionSelect'><br>";
-    for(var i = 0; i < students.length; i++){
-        secS += "<option>" + students[i].lastName + "</option><br>";
+    for(var x = 0; x < sections.length; x++){
+        secS += "<option value='" + x + "'>" + sections[x].name + "</option><br>";
     }
     secS += "</select>";
-
-
+    document.getElementById("studentSectionSelectDiv").innerHTML = "Enter Student: " + stuS + "<br> Enter Section: " + secS;
     turnOn("addStudentToSection");
+}
+
+function studentToSectionCont() {
+    var i = parseInt(document.getElementById("studentSelect").value);
+    var x = parseInt(document.getElementById("sectionSelect").value);
+    console.log(i);
+    sections[x].students.push(students[i].lastName);
+    turnOff("addStudentToSection");
+    document.getElementById("studentToSectionDisplay").innerHTML = "Student " + students[i].lastName + " successfully " +
+        "added to section " + sections[x].name;
+    turnOn("studentToSectionDisplay");
 }
 
 function assignStudentGrade(){
@@ -176,9 +184,4 @@ function detailSection(n){
     turnOn("objectDetails");
 }
 
-
-
-function searchSchool() {
-    hideAll();
-}
 
