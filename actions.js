@@ -103,7 +103,7 @@ function enterSection(){
 
 function addStudentToSection(){
     hideAll();
-    turnOff("studentToSectionDisplay")
+    turnOff("studentToSectionDisplay");
     var stuS = "<select id='studentSelect'><br>";
     for(var i = 0; i < students.length; i++){
         stuS += "<option value='" + i + "'>" + students[i].lastName + "</option><br>";
@@ -122,19 +122,37 @@ function studentToSectionCont() {
     var i = parseInt(document.getElementById("studentSelect").value);
     var x = parseInt(document.getElementById("sectionSelect").value);
     console.log(i);
-    sections[x].students.push(students[i].lastName);
+    sections[x].studentsArray.push(students[i].lastName);
     turnOff("addStudentToSection");
     document.getElementById("studentToSectionDisplay").innerHTML = "Student " + students[i].lastName + " successfully " +
         "added to section " + sections[x].name;
     turnOn("studentToSectionDisplay");
 }
 
-function assignStudentGrade(){
-    hideAll();
-}
-
 function removeStudentFromSection(){
     hideAll();
+   // document.getElementById("removeStudentFromSection").innerHTML =
+    var SL = "Select a Section Containing More than 0 Students: " +
+        "<select id='sectionList'>";
+    for(var i = 0; i < sections.length; i++){
+        if(sections[i].studentsArray.length > 0){
+            SL += "<option value='"+ i +"'>" + sections[i].name+ "</option>"
+        }
+    }
+    SL += "</select>";
+    document.getElementById("sectionsListDiv").innerHTML = SL;
+
+    turnOn("removeStudentFromSection");
+}
+var studs = [];
+function removeStudentContinue(){
+    studs = sections[document.getElementById("sectionsList").value].studentsArray;
+    var SS = "Select the Student That You Would Like to remove from this Section: " + "<select id='removedStudent'>";
+    for(var i; i < 0; i++){
+        SS += "<option value='" + i + "'>" + studs[i] + "</option>";
+    }
+    SS += "</select>";
+    document.getElementById
 }
 
 function showData() {
@@ -180,7 +198,14 @@ function detailTeacher(n){
 }
 function detailSection(n){
     document.getElementById("objectDetails").innerHTML = sections[n].name + " is taught by " + sections[n].teacher
-        + " and has a max size of " + sections[n].maxsize;
+        + " and has a max size of " + sections[n].maxsize + ". " +
+        "There are currently " + parseInt(sections[n].studentsArray.length) + " students in this section.";
+        console.log(sections[n].maxsize);
+
+    if(sections[n].studentsArray.length > 0){
+        document.getElementById("objectDetails").innerHTML += "<br><br> The following students are enrolled in this " +
+            "section: " + sections[n].studentsArray;
+    }
     turnOn("objectDetails");
 }
 

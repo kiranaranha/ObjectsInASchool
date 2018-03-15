@@ -17,7 +17,6 @@
         <button class="btn btn-default" onclick="addPerson()">Add a New Person</button>
         <button class="btn btn-default" onclick="addSection()">Add Section</button>
         <button class="btn btn-default" onclick="addStudentToSection()">Add a Student to a Section</button>
-        <button class="btn btn-default" onclick="assignStudentGrade()">Assign a Student a Grade</button>
         <button class="btn btn-default" onclick="removeStudentFromSection()">Remove a Student from a Section</button>
         <button class="btn btn-default" onclick="showData()">Show Data</button>
     </div>
@@ -79,7 +78,11 @@
     </fieldset>
     <div id="studentToSectionDisplay" class="onOff"></div>
 
-
+    <fieldset id="removeStudentFromSection" class="onOff">
+        <legend>Remove a Student From a Section</legend>
+        <div id="sectionsListDiv"></div>
+        <button onclick="removeStudentContinue()" class="btn btn-default"></button>
+    </fieldset>
 
 
 </body>
