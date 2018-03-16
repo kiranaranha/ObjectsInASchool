@@ -95,6 +95,8 @@ document.getElementById("teacherSelectDiv").innerHTML = "Enter Section Teacher: 
 function enterSection(){
     var sectionName = document.getElementById("sectionName").value;
     var teacher = document.getElementById("teacherSelectBox").value;
+    var maxsize = document.getElementById("maxSize").value;
+    sections.push(Section(sectionName, maxSize, teacher));
     hideAll();
     document.getElementById("sectionEntered").innerHTML = "Section " + sectionName + " with Teacher " + teacher
         + " Successfully Added";
@@ -144,15 +146,34 @@ function removeStudentFromSection(){
 
     turnOn("removeStudentFromSection");
 }
-var studs = [];
+
 function removeStudentContinue(){
-    studs = sections[document.getElementById("sectionsList").value].studentsArray;
-    var SS = "Select the Student That You Would Like to remove from this Section: " + "<select id='removedStudent'>";
-    for(var i; i < 0; i++){
-        SS += "<option value='" + i + "'>" + studs[i] + "</option>";
+    console.log(sections[document.getElementById("sectionList").value].studentsArray);
+    var stud = sections[document.getElementById("sectionList").value].studentsArray;
+    var SS = "Select the student That you would like to remove from this Section: " + "<select id='removedStudent'>";
+    for(var i = 0; i < stud.length; i++){
+        SS += "<option value='" + i + "'>" + stud[i] + "</option>";
+        console.log(stud[i]);
     }
     SS += "</select>";
-    document.getElementById
+    console.log(SS);
+    document.getElementById("studentsListDiv").innerHTML = SS + "<br> " +
+        "<button onclick=\"removeStudent()\" class=\"btn btn-default\">Remove Student</button>";
+}
+
+function removeStudent(){
+    console.log(AdvMath2.studentsArray);
+    var sectionNum = document.getElementById("sectionList").value;
+    var studentNum = document.getElementById("removedStudent").value;
+    var stud = sections[sectionNum].studentsArray[studentNum];
+    console.log(sectionNum);
+    console.log(studentNum);
+    sections[sectionNum].studentsArray.splice(studentNum, 1);
+    console.log(AdvMath2.studentsArray);
+    hideAll();
+    document.getElementById("studentRemoved").innerHTML = "Student " + stud + " successfully removed from section "
+        + sections[sectionNum].name;
+    turnOn("studentRemoved");
 }
 
 function showData() {
