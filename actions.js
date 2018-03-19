@@ -96,10 +96,21 @@ function enterSection(){
     var sectionName = document.getElementById("sectionName").value;
     var teacher = document.getElementById("teacherSelectBox").value;
     var maxsize = document.getElementById("maxSize").value;
-    sections.push(Section(sectionName, maxSize, teacher));
+    var found = false;
+
+    for(var i = 0; i < sections.length; i++){
+        if(sections[i].name == sectionName){
+            document.getElementById("sectionEntered").innerHTML = "Section " + sectionName + " Already Exists!";
+            found = true;
+            break;
+        }
+    }
+    if(found == false) {
+        sections.push(new Section(sectionName, maxsize, teacher));
+        document.getElementById("sectionEntered").innerHTML = "Section " + sectionName + " with Teacher " + teacher
+            + " Successfully Added";
+    }
     hideAll();
-    document.getElementById("sectionEntered").innerHTML = "Section " + sectionName + " with Teacher " + teacher
-        + " Successfully Added";
     turnOn("sectionEntered");
 }
 
@@ -123,17 +134,31 @@ function addStudentToSection(){
 function studentToSectionCont() {
     var i = parseInt(document.getElementById("studentSelect").value);
     var x = parseInt(document.getElementById("sectionSelect").value);
-    console.log(i);
-    sections[x].studentsArray.push(students[i].lastName);
+    var repeat = false;
+
+    for(var a = 0; a < sections[x].studentsArray.length; a++){
+        console.log(sections[x].studentsArray[a]);
+        console.log(students[i].lastName);
+        if(sections[x].studentsArray[a] == students[i].lastName){
+            document.getElementById("studentToSectionDisplay").innerHTML = "Student " + students[i].lastName +
+                " is Already in Section " + sections[x].name;
+            repeat = true;
+            break;
+        }
+    }
+    if(repeat == false){
+        sections[x].studentsArray.push(students[i].lastName);
+
+        document.getElementById("studentToSectionDisplay").innerHTML = "Student " + students[i].lastName + " successfully " +
+            "added to section " + sections[x].name;
+    }
     turnOff("addStudentToSection");
-    document.getElementById("studentToSectionDisplay").innerHTML = "Student " + students[i].lastName + " successfully " +
-        "added to section " + sections[x].name;
     turnOn("studentToSectionDisplay");
 }
 
 function removeStudentFromSection(){
     hideAll();
-   // document.getElementById("removeStudentFromSection").innerHTML =
+    document.getElementById( "studentsListDiv").innerHTML = '';
     var SL = "Select a Section Containing More than 0 Students: " +
         "<select id='sectionList'>";
     for(var i = 0; i < sections.length; i++){
@@ -150,7 +175,7 @@ function removeStudentFromSection(){
 function removeStudentContinue(){
     console.log(sections[document.getElementById("sectionList").value].studentsArray);
     var stud = sections[document.getElementById("sectionList").value].studentsArray;
-    var SS = "Select the student That you would like to remove from this Section: " + "<select id='removedStudent'>";
+    var SS = "Select the Student That You Would Like to Remove From This Section: " + "<select id='removedStudent'>";
     for(var i = 0; i < stud.length; i++){
         SS += "<option value='" + i + "'>" + stud[i] + "</option>";
         console.log(stud[i]);
